@@ -32,6 +32,7 @@ This project implements a Dynamic Closed-Loop Light Intensity Control System des
 
 ### Communication
 - **I2C**
+- **TIM**
 - **GPIO**
 - **USART3**
 - **ADC**
