@@ -1,0 +1,2 @@
+../Components/Src/menu.c:35:6:MENU_ITEM_ClearDisplayBuffer	1
+../Components/Src/menu.c:44:6:MENU_ITEM_WriteDisplayBuffer	1

@@ -1,0 +1,6 @@
+../Components/Src/menu_config.c:35:1:__menu_ref_lux_routine	1
+../Components/Src/menu_config.c:36:1:__menu_illuminance_routine	1
+../Components/Src/menu_config.c:37:1:__menu_cntrl_sig_routine	1
+../Components/Src/menu_config.c:52:6:menu_float_io_routine	1
+../Components/Src/menu_config.c:75:6:MENU_Init	3
+../Components/Src/menu_config.c:100:6:MENU_ROUTINE	1
