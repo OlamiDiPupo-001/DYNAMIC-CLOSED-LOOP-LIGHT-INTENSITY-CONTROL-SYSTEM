@@ -1,5 +1,5 @@
 Components/Src/bh1750.o: ../Components/Src/bh1750.c \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/bh1750.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/bh1750.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -32,7 +32,7 @@ Components/Src/bh1750.o: ../Components/Src/bh1750.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/bh1750.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/bh1750.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:

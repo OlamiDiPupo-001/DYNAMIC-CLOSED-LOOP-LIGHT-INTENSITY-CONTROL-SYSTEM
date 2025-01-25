@@ -1,6 +1,6 @@
 Components/Src/disp.o: ../Components/Src/disp.c \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/disp.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/dio.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/disp.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/dio.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -33,8 +33,8 @@ Components/Src/disp.o: ../Components/Src/disp.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/disp.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/dio.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/disp.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/dio.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:

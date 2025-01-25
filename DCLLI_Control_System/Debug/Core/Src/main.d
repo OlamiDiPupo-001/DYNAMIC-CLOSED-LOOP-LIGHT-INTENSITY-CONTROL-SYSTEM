@@ -33,24 +33,20 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/dma.h ../Core/Inc/i2c.h \
  ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/bh1750_config.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/bh1750.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/led_config.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/led.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/dio.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/pwm.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/btn_config.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/btn.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/disp_config.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/disp.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/lcd_config.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/lcd.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/aio.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/common.h \
- ../Middlewares/Third_Party/ARM_CMSIS/CMSIS/DSP/Include/arm_math.h \
- ../Drivers/CMSIS/Include/cmsis_compiler.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/menu_config.h \
- C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/menu.h
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/bh1750_config.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/bh1750.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/led_config.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/led.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/dio.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/pwm.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/btn_config.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/btn.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/disp_config.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/disp.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/lcd_config.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/lcd.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/aio.h \
+ C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/common.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -91,21 +87,17 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/tim.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/gpio.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/bh1750_config.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/bh1750.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/led_config.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/led.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/dio.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/pwm.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/btn_config.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/btn.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/disp_config.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/disp.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/lcd_config.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/lcd.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/aio.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/common.h:
-../Middlewares/Third_Party/ARM_CMSIS/CMSIS/DSP/Include/arm_math.h:
-../Drivers/CMSIS/Include/cmsis_compiler.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/menu_config.h:
-C:/Users/oladi/OneDrive/Desktop/SEMS/submission/Light_Intensity/Components/Inc/menu.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/bh1750_config.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/bh1750.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/led_config.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/led.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/dio.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/pwm.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/btn_config.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/btn.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/disp_config.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/disp.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/lcd_config.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/lcd.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/aio.h:
+C:/Users/oladi/OneDrive/Desktop/SEMS/MicroProcessor/Final_Project/DYNAMIC-CLOSED-LOOP-LIGHT-INTENSITY-CONTROL-SYSTEM/DCLLI_Control_System/Components/Inc/common.h:
