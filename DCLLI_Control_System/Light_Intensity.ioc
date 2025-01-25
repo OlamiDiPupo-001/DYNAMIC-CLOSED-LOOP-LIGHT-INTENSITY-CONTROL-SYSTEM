@@ -548,4 +548,3 @@ VP_TIM9_VS_ClockSourceINT.Signal=TIM9_VS_ClockSourceINT
 board=NUCLEO-F746ZG
 boardIOC=true
 isbadioc=false
-isbadioc=false
