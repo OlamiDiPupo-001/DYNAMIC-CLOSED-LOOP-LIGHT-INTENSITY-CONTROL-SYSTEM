@@ -130,23 +130,20 @@ void ButtonControl(void)
 }
 void RangeCheck(void)
 {
-    static int counter = 0;
-
-    // Update min_lux and max_lux every 10 seconds (or adjust as needed)
-    if (counter++ >= 10000 / 1000) // Assuming 1000ms HAL_Delay in the main loop
+  if (!init_done)
     {
-        LED_PWM_WriteDuty(&hld1, 0); // Set LED off and record min_lux
-        HAL_Delay(1000);
+        // Set duty cycle to 0 and record min_lux
+        LED_PWM_WriteDuty(&hld1, 0);
+        HAL_Delay(1000);  // Adjust the delay as needed
         min_lux = BH1750_ReadIlluminance_lux(&hbh1750);
-
-        LED_PWM_WriteDuty(&hld1, 100); // Set LED to max brightness and record max_lux
-        HAL_Delay(1000);
+        // Set duty cycle to 100 and record max_lux
+        LED_PWM_WriteDuty(&hld1, 100);
+        HAL_Delay(1000);  // Adjust the delay as needed
         max_lux = BH1750_ReadIlluminance_lux(&hbh1750);
 
-        counter = 0; // Reset counter
+        init_done = 1;
     }
 }
-
 void controlRoutine(void)
 {
     // Read illuminance value
@@ -179,19 +176,30 @@ void processPotentiometer(void)
 }
 void IntegralRoutine(void)
 {
-  // Inside controlRoutine(), use 'currentMode' to determine the source of 'aim'
-  if (currentMode == MODE_POTENTIOMETER) {
-      aim = pot_out;
-  } else if (currentMode == MODE_TERMINAL) {
-      // aim remains unchanged in MODE_TERMINAL
-  }
-    error = aim - Illuminance_lux;  // Digital calculate
-    // error = pot_out - Illuminance_lux;      // Analogue calculate
+    // Determine the target based on the current mode
+    if (currentMode == MODE_POTENTIOMETER) {
+        aim = pot_out;
+    }
+
+    // Calculate error
+    error = aim - Illuminance_lux;
+
+    // Accumulate the integral term, with an upper bound to prevent wind-up
     integral += error;
+    if (integral > 1000.0f) integral = 1000.0f; // Prevent integral wind-up
+    if (integral < -1000.0f) integral = -1000.0f;
+
+    // Calculate duty cycle from the integral term
     duty_cycle = Ki * integral;
-    lux_out = min_lux + (duty_cycle * 0.01 * (max_lux - min_lux));  // led out lux
+
+    // Clamp the duty cycle to valid PWM range (0-100%)
+    if (duty_cycle > 100.0f) duty_cycle = 100.0f;
+    if (duty_cycle < 0.0f) duty_cycle = 0.0f;
+
+    // Output the duty cycle to the LED via PWM
     LED_PWM_WriteDuty(&hld1, duty_cycle);
 }
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if(huart == &huart3)
@@ -211,7 +219,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
