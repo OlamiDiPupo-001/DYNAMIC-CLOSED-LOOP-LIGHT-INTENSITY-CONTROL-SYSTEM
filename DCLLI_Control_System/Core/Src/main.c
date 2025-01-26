@@ -130,20 +130,23 @@ void ButtonControl(void)
 }
 void RangeCheck(void)
 {
-  if (!init_done)
+    static int counter = 0;
+
+    // Update min_lux and max_lux every 10 seconds (or adjust as needed)
+    if (counter++ >= 10000 / 1000) // Assuming 1000ms HAL_Delay in the main loop
     {
-        // Set duty cycle to 0 and record min_lux
-        LED_PWM_WriteDuty(&hld1, 0);
-        HAL_Delay(1000);  // Adjust the delay as needed
+        LED_PWM_WriteDuty(&hld1, 0); // Set LED off and record min_lux
+        HAL_Delay(1000);
         min_lux = BH1750_ReadIlluminance_lux(&hbh1750);
-        // Set duty cycle to 100 and record max_lux
-        LED_PWM_WriteDuty(&hld1, 100);
-        HAL_Delay(1000);  // Adjust the delay as needed
+
+        LED_PWM_WriteDuty(&hld1, 100); // Set LED to max brightness and record max_lux
+        HAL_Delay(1000);
         max_lux = BH1750_ReadIlluminance_lux(&hbh1750);
 
-        init_done = 1;
+        counter = 0; // Reset counter
     }
 }
+
 void controlRoutine(void)
 {
     // Read illuminance value

@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0000b104  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0001ce66  00000000  00000000  0000b134  2**0
+ 12 .debug_info   0001ce7c  00000000  00000000  0000b134  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00004749  00000000  00000000  00027f9a  2**0
+ 13 .debug_abbrev 00004749  00000000  00000000  00027fb0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00001648  00000000  00000000  0002c6e8  2**3
+ 14 .debug_aranges 00001648  00000000  00000000  0002c700  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 000010d2  00000000  00000000  0002dd30  2**0
+ 15 .debug_rnglists 000010d2  00000000  00000000  0002dd48  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000299e9  00000000  00000000  0002ee02  2**0
+ 16 .debug_macro  000299e9  00000000  00000000  0002ee1a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00022483  00000000  00000000  000587eb  2**0
+ 17 .debug_line   00022482  00000000  00000000  00058803  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f9391  00000000  00000000  0007ac6e  2**0
+ 18 .debug_str    000f9391  00000000  00000000  0007ac85  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00173fff  2**0
+ 19 .comment      00000043  00000000  00000000  00174016  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00005f1c  00000000  00000000  00174044  2**2
+ 20 .debug_frame  00005f1c  00000000  00000000  0017405c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 000000b8  00000000  00000000  00179f60  2**0
+ 21 .debug_line_str 000000b8  00000000  00000000  00179f78  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3778,7 +3778,7 @@ void ModeSwitch(void)
  8001e22:	bf00      	nop
  8001e24:	bd80      	pop	{r7, pc}
  8001e26:	bf00      	nop
- 8001e28:	20000258 	.word	0x20000258
+ 8001e28:	20000254 	.word	0x20000254
 
 08001e2c <ButtonControl>:
 void ButtonControl(void)
@@ -3829,7 +3829,7 @@ void ButtonControl(void)
  8001e78:	bf00      	nop
  8001e7a:	bd80      	pop	{r7, pc}
  8001e7c:	20000010 	.word	0x20000010
- 8001e80:	20000258 	.word	0x20000258
+ 8001e80:	20000254 	.word	0x20000254
  8001e84:	20000238 	.word	0x20000238
  8001e88:	2000023c 	.word	0x2000023c
 
@@ -3838,267 +3838,271 @@ void RangeCheck(void)
 {
  8001e8c:	b580      	push	{r7, lr}
  8001e8e:	af00      	add	r7, sp, #0
-  if (!init_done)
- 8001e90:	4b15      	ldr	r3, [pc, #84]	@ (8001ee8 <RangeCheck+0x5c>)
- 8001e92:	681b      	ldr	r3, [r3, #0]
- 8001e94:	2b00      	cmp	r3, #0
- 8001e96:	d124      	bne.n	8001ee2 <RangeCheck+0x56>
-    {
-        // Set duty cycle to 0 and record min_lux
-        LED_PWM_WriteDuty(&hld1, 0);
- 8001e98:	ed9f 0a14 	vldr	s0, [pc, #80]	@ 8001eec <RangeCheck+0x60>
- 8001e9c:	4814      	ldr	r0, [pc, #80]	@ (8001ef0 <RangeCheck+0x64>)
- 8001e9e:	f7ff fa71 	bl	8001384 <LED_PWM_WriteDuty>
-        HAL_Delay(1000);  // Adjust the delay as needed
- 8001ea2:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
- 8001ea6:	f000 fe6b 	bl	8002b80 <HAL_Delay>
-        min_lux = BH1750_ReadIlluminance_lux(&hbh1750);
- 8001eaa:	4812      	ldr	r0, [pc, #72]	@ (8001ef4 <RangeCheck+0x68>)
- 8001eac:	f7fe fedc 	bl	8000c68 <BH1750_ReadIlluminance_lux>
- 8001eb0:	eef0 7a40 	vmov.f32	s15, s0
- 8001eb4:	4b10      	ldr	r3, [pc, #64]	@ (8001ef8 <RangeCheck+0x6c>)
- 8001eb6:	edc3 7a00 	vstr	s15, [r3]
-        // Set duty cycle to 100 and record max_lux
-        LED_PWM_WriteDuty(&hld1, 100);
- 8001eba:	ed9f 0a10 	vldr	s0, [pc, #64]	@ 8001efc <RangeCheck+0x70>
- 8001ebe:	480c      	ldr	r0, [pc, #48]	@ (8001ef0 <RangeCheck+0x64>)
- 8001ec0:	f7ff fa60 	bl	8001384 <LED_PWM_WriteDuty>
-        HAL_Delay(1000);  // Adjust the delay as needed
- 8001ec4:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
- 8001ec8:	f000 fe5a 	bl	8002b80 <HAL_Delay>
-        max_lux = BH1750_ReadIlluminance_lux(&hbh1750);
- 8001ecc:	4809      	ldr	r0, [pc, #36]	@ (8001ef4 <RangeCheck+0x68>)
- 8001ece:	f7fe fecb 	bl	8000c68 <BH1750_ReadIlluminance_lux>
- 8001ed2:	eef0 7a40 	vmov.f32	s15, s0
- 8001ed6:	4b0a      	ldr	r3, [pc, #40]	@ (8001f00 <RangeCheck+0x74>)
- 8001ed8:	edc3 7a00 	vstr	s15, [r3]
+    static int counter = 0;
 
-        init_done = 1;
- 8001edc:	4b02      	ldr	r3, [pc, #8]	@ (8001ee8 <RangeCheck+0x5c>)
- 8001ede:	2201      	movs	r2, #1
- 8001ee0:	601a      	str	r2, [r3, #0]
+    // Update min_lux and max_lux every 10 seconds (or adjust as needed)
+    if (counter++ >= 10000 / 1000) // Assuming 1000ms HAL_Delay in the main loop
+ 8001e90:	4b16      	ldr	r3, [pc, #88]	@ (8001eec <RangeCheck+0x60>)
+ 8001e92:	681b      	ldr	r3, [r3, #0]
+ 8001e94:	1c5a      	adds	r2, r3, #1
+ 8001e96:	4915      	ldr	r1, [pc, #84]	@ (8001eec <RangeCheck+0x60>)
+ 8001e98:	600a      	str	r2, [r1, #0]
+ 8001e9a:	2b09      	cmp	r3, #9
+ 8001e9c:	dd24      	ble.n	8001ee8 <RangeCheck+0x5c>
+    {
+        LED_PWM_WriteDuty(&hld1, 0); // Set LED off and record min_lux
+ 8001e9e:	ed9f 0a14 	vldr	s0, [pc, #80]	@ 8001ef0 <RangeCheck+0x64>
+ 8001ea2:	4814      	ldr	r0, [pc, #80]	@ (8001ef4 <RangeCheck+0x68>)
+ 8001ea4:	f7ff fa6e 	bl	8001384 <LED_PWM_WriteDuty>
+        HAL_Delay(1000);
+ 8001ea8:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
+ 8001eac:	f000 fe68 	bl	8002b80 <HAL_Delay>
+        min_lux = BH1750_ReadIlluminance_lux(&hbh1750);
+ 8001eb0:	4811      	ldr	r0, [pc, #68]	@ (8001ef8 <RangeCheck+0x6c>)
+ 8001eb2:	f7fe fed9 	bl	8000c68 <BH1750_ReadIlluminance_lux>
+ 8001eb6:	eef0 7a40 	vmov.f32	s15, s0
+ 8001eba:	4b10      	ldr	r3, [pc, #64]	@ (8001efc <RangeCheck+0x70>)
+ 8001ebc:	edc3 7a00 	vstr	s15, [r3]
+
+        LED_PWM_WriteDuty(&hld1, 100); // Set LED to max brightness and record max_lux
+ 8001ec0:	ed9f 0a0f 	vldr	s0, [pc, #60]	@ 8001f00 <RangeCheck+0x74>
+ 8001ec4:	480b      	ldr	r0, [pc, #44]	@ (8001ef4 <RangeCheck+0x68>)
+ 8001ec6:	f7ff fa5d 	bl	8001384 <LED_PWM_WriteDuty>
+        HAL_Delay(1000);
+ 8001eca:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
+ 8001ece:	f000 fe57 	bl	8002b80 <HAL_Delay>
+        max_lux = BH1750_ReadIlluminance_lux(&hbh1750);
+ 8001ed2:	4809      	ldr	r0, [pc, #36]	@ (8001ef8 <RangeCheck+0x6c>)
+ 8001ed4:	f7fe fec8 	bl	8000c68 <BH1750_ReadIlluminance_lux>
+ 8001ed8:	eef0 7a40 	vmov.f32	s15, s0
+ 8001edc:	4b09      	ldr	r3, [pc, #36]	@ (8001f04 <RangeCheck+0x78>)
+ 8001ede:	edc3 7a00 	vstr	s15, [r3]
+
+        counter = 0; // Reset counter
+ 8001ee2:	4b02      	ldr	r3, [pc, #8]	@ (8001eec <RangeCheck+0x60>)
+ 8001ee4:	2200      	movs	r2, #0
+ 8001ee6:	601a      	str	r2, [r3, #0]
     }
 }
- 8001ee2:	bf00      	nop
- 8001ee4:	bd80      	pop	{r7, pc}
- 8001ee6:	bf00      	nop
- 8001ee8:	20000254 	.word	0x20000254
- 8001eec:	00000000 	.word	0x00000000
- 8001ef0:	20000070 	.word	0x20000070
- 8001ef4:	20000000 	.word	0x20000000
- 8001ef8:	20000250 	.word	0x20000250
- 8001efc:	42c80000 	.word	0x42c80000
- 8001f00:	2000024c 	.word	0x2000024c
+ 8001ee8:	bf00      	nop
+ 8001eea:	bd80      	pop	{r7, pc}
+ 8001eec:	20000258 	.word	0x20000258
+ 8001ef0:	00000000 	.word	0x00000000
+ 8001ef4:	20000070 	.word	0x20000070
+ 8001ef8:	20000000 	.word	0x20000000
+ 8001efc:	20000250 	.word	0x20000250
+ 8001f00:	42c80000 	.word	0x42c80000
+ 8001f04:	2000024c 	.word	0x2000024c
 
-08001f04 <controlRoutine>:
+08001f08 <controlRoutine>:
+
 void controlRoutine(void)
 {
- 8001f04:	b580      	push	{r7, lr}
- 8001f06:	af00      	add	r7, sp, #0
+ 8001f08:	b580      	push	{r7, lr}
+ 8001f0a:	af00      	add	r7, sp, #0
     // Read illuminance value
     Illuminance_lux = BH1750_ReadIlluminance_lux(&hbh1750);
- 8001f08:	4843      	ldr	r0, [pc, #268]	@ (8002018 <controlRoutine+0x114>)
- 8001f0a:	f7fe fead 	bl	8000c68 <BH1750_ReadIlluminance_lux>
- 8001f0e:	eef0 7a40 	vmov.f32	s15, s0
- 8001f12:	4b42      	ldr	r3, [pc, #264]	@ (800201c <controlRoutine+0x118>)
- 8001f14:	edc3 7a00 	vstr	s15, [r3]
+ 8001f0c:	4843      	ldr	r0, [pc, #268]	@ (800201c <controlRoutine+0x114>)
+ 8001f0e:	f7fe feab 	bl	8000c68 <BH1750_ReadIlluminance_lux>
+ 8001f12:	eef0 7a40 	vmov.f32	s15, s0
+ 8001f16:	4b42      	ldr	r3, [pc, #264]	@ (8002020 <controlRoutine+0x118>)
+ 8001f18:	edc3 7a00 	vstr	s15, [r3]
     Illuminance_lux_Int = Illuminance_lux * 1000.0f;
- 8001f18:	4b40      	ldr	r3, [pc, #256]	@ (800201c <controlRoutine+0x118>)
- 8001f1a:	edd3 7a00 	vldr	s15, [r3]
- 8001f1e:	ed9f 7a40 	vldr	s14, [pc, #256]	@ 8002020 <controlRoutine+0x11c>
- 8001f22:	ee67 7a87 	vmul.f32	s15, s15, s14
- 8001f26:	eefc 7ae7 	vcvt.u32.f32	s15, s15
- 8001f2a:	ee17 2a90 	vmov	r2, s15
- 8001f2e:	4b3d      	ldr	r3, [pc, #244]	@ (8002024 <controlRoutine+0x120>)
- 8001f30:	601a      	str	r2, [r3, #0]
+ 8001f1c:	4b40      	ldr	r3, [pc, #256]	@ (8002020 <controlRoutine+0x118>)
+ 8001f1e:	edd3 7a00 	vldr	s15, [r3]
+ 8001f22:	ed9f 7a40 	vldr	s14, [pc, #256]	@ 8002024 <controlRoutine+0x11c>
+ 8001f26:	ee67 7a87 	vmul.f32	s15, s15, s14
+ 8001f2a:	eefc 7ae7 	vcvt.u32.f32	s15, s15
+ 8001f2e:	ee17 2a90 	vmov	r2, s15
+ 8001f32:	4b3d      	ldr	r3, [pc, #244]	@ (8002028 <controlRoutine+0x120>)
+ 8001f34:	601a      	str	r2, [r3, #0]
 
     avg_lux = ((max_lux - min_lux) / 4) * 1000.0f;
- 8001f32:	4b3d      	ldr	r3, [pc, #244]	@ (8002028 <controlRoutine+0x124>)
- 8001f34:	ed93 7a00 	vldr	s14, [r3]
- 8001f38:	4b3c      	ldr	r3, [pc, #240]	@ (800202c <controlRoutine+0x128>)
- 8001f3a:	edd3 7a00 	vldr	s15, [r3]
- 8001f3e:	ee37 7a67 	vsub.f32	s14, s14, s15
- 8001f42:	eef1 6a00 	vmov.f32	s13, #16	@ 0x40800000  4.0
- 8001f46:	eec7 7a26 	vdiv.f32	s15, s14, s13
- 8001f4a:	ed9f 7a35 	vldr	s14, [pc, #212]	@ 8002020 <controlRoutine+0x11c>
- 8001f4e:	ee67 7a87 	vmul.f32	s15, s15, s14
- 8001f52:	eefc 7ae7 	vcvt.u32.f32	s15, s15
- 8001f56:	ee17 2a90 	vmov	r2, s15
- 8001f5a:	4b35      	ldr	r3, [pc, #212]	@ (8002030 <controlRoutine+0x12c>)
- 8001f5c:	601a      	str	r2, [r3, #0]
+ 8001f36:	4b3d      	ldr	r3, [pc, #244]	@ (800202c <controlRoutine+0x124>)
+ 8001f38:	ed93 7a00 	vldr	s14, [r3]
+ 8001f3c:	4b3c      	ldr	r3, [pc, #240]	@ (8002030 <controlRoutine+0x128>)
+ 8001f3e:	edd3 7a00 	vldr	s15, [r3]
+ 8001f42:	ee37 7a67 	vsub.f32	s14, s14, s15
+ 8001f46:	eef1 6a00 	vmov.f32	s13, #16	@ 0x40800000  4.0
+ 8001f4a:	eec7 7a26 	vdiv.f32	s15, s14, s13
+ 8001f4e:	ed9f 7a35 	vldr	s14, [pc, #212]	@ 8002024 <controlRoutine+0x11c>
+ 8001f52:	ee67 7a87 	vmul.f32	s15, s15, s14
+ 8001f56:	eefc 7ae7 	vcvt.u32.f32	s15, s15
+ 8001f5a:	ee17 2a90 	vmov	r2, s15
+ 8001f5e:	4b35      	ldr	r3, [pc, #212]	@ (8002034 <controlRoutine+0x12c>)
+ 8001f60:	601a      	str	r2, [r3, #0]
     LED_DIO_Write(&hldg1, Illuminance_lux_Int > (min_lux + avg_lux));   // quarter of illuminance alert
- 8001f5e:	4b31      	ldr	r3, [pc, #196]	@ (8002024 <controlRoutine+0x120>)
- 8001f60:	681b      	ldr	r3, [r3, #0]
- 8001f62:	ee07 3a90 	vmov	s15, r3
- 8001f66:	eeb8 7a67 	vcvt.f32.u32	s14, s15
- 8001f6a:	4b31      	ldr	r3, [pc, #196]	@ (8002030 <controlRoutine+0x12c>)
- 8001f6c:	681b      	ldr	r3, [r3, #0]
- 8001f6e:	ee07 3a90 	vmov	s15, r3
- 8001f72:	eef8 6a67 	vcvt.f32.u32	s13, s15
- 8001f76:	4b2d      	ldr	r3, [pc, #180]	@ (800202c <controlRoutine+0x128>)
- 8001f78:	edd3 7a00 	vldr	s15, [r3]
- 8001f7c:	ee76 7aa7 	vadd.f32	s15, s13, s15
- 8001f80:	eeb4 7ae7 	vcmpe.f32	s14, s15
- 8001f84:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8001f88:	bfcc      	ite	gt
- 8001f8a:	2301      	movgt	r3, #1
- 8001f8c:	2300      	movle	r3, #0
- 8001f8e:	b2db      	uxtb	r3, r3
- 8001f90:	4619      	mov	r1, r3
- 8001f92:	4828      	ldr	r0, [pc, #160]	@ (8002034 <controlRoutine+0x130>)
- 8001f94:	f7ff f9b6 	bl	8001304 <LED_DIO_Write>
+ 8001f62:	4b31      	ldr	r3, [pc, #196]	@ (8002028 <controlRoutine+0x120>)
+ 8001f64:	681b      	ldr	r3, [r3, #0]
+ 8001f66:	ee07 3a90 	vmov	s15, r3
+ 8001f6a:	eeb8 7a67 	vcvt.f32.u32	s14, s15
+ 8001f6e:	4b31      	ldr	r3, [pc, #196]	@ (8002034 <controlRoutine+0x12c>)
+ 8001f70:	681b      	ldr	r3, [r3, #0]
+ 8001f72:	ee07 3a90 	vmov	s15, r3
+ 8001f76:	eef8 6a67 	vcvt.f32.u32	s13, s15
+ 8001f7a:	4b2d      	ldr	r3, [pc, #180]	@ (8002030 <controlRoutine+0x128>)
+ 8001f7c:	edd3 7a00 	vldr	s15, [r3]
+ 8001f80:	ee76 7aa7 	vadd.f32	s15, s13, s15
+ 8001f84:	eeb4 7ae7 	vcmpe.f32	s14, s15
+ 8001f88:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8001f8c:	bfcc      	ite	gt
+ 8001f8e:	2301      	movgt	r3, #1
+ 8001f90:	2300      	movle	r3, #0
+ 8001f92:	b2db      	uxtb	r3, r3
+ 8001f94:	4619      	mov	r1, r3
+ 8001f96:	4828      	ldr	r0, [pc, #160]	@ (8002038 <controlRoutine+0x130>)
+ 8001f98:	f7ff f9b4 	bl	8001304 <LED_DIO_Write>
     LED_DIO_Write(&hldb1, Illuminance_lux_Int > (min_lux + (avg_lux * 2))); // half of illuminance alert
- 8001f98:	4b22      	ldr	r3, [pc, #136]	@ (8002024 <controlRoutine+0x120>)
- 8001f9a:	681b      	ldr	r3, [r3, #0]
- 8001f9c:	ee07 3a90 	vmov	s15, r3
- 8001fa0:	eeb8 7a67 	vcvt.f32.u32	s14, s15
- 8001fa4:	4b22      	ldr	r3, [pc, #136]	@ (8002030 <controlRoutine+0x12c>)
- 8001fa6:	681b      	ldr	r3, [r3, #0]
- 8001fa8:	005b      	lsls	r3, r3, #1
- 8001faa:	ee07 3a90 	vmov	s15, r3
- 8001fae:	eef8 6a67 	vcvt.f32.u32	s13, s15
- 8001fb2:	4b1e      	ldr	r3, [pc, #120]	@ (800202c <controlRoutine+0x128>)
- 8001fb4:	edd3 7a00 	vldr	s15, [r3]
- 8001fb8:	ee76 7aa7 	vadd.f32	s15, s13, s15
- 8001fbc:	eeb4 7ae7 	vcmpe.f32	s14, s15
- 8001fc0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8001fc4:	bfcc      	ite	gt
- 8001fc6:	2301      	movgt	r3, #1
- 8001fc8:	2300      	movle	r3, #0
- 8001fca:	b2db      	uxtb	r3, r3
- 8001fcc:	4619      	mov	r1, r3
- 8001fce:	481a      	ldr	r0, [pc, #104]	@ (8002038 <controlRoutine+0x134>)
- 8001fd0:	f7ff f998 	bl	8001304 <LED_DIO_Write>
+ 8001f9c:	4b22      	ldr	r3, [pc, #136]	@ (8002028 <controlRoutine+0x120>)
+ 8001f9e:	681b      	ldr	r3, [r3, #0]
+ 8001fa0:	ee07 3a90 	vmov	s15, r3
+ 8001fa4:	eeb8 7a67 	vcvt.f32.u32	s14, s15
+ 8001fa8:	4b22      	ldr	r3, [pc, #136]	@ (8002034 <controlRoutine+0x12c>)
+ 8001faa:	681b      	ldr	r3, [r3, #0]
+ 8001fac:	005b      	lsls	r3, r3, #1
+ 8001fae:	ee07 3a90 	vmov	s15, r3
+ 8001fb2:	eef8 6a67 	vcvt.f32.u32	s13, s15
+ 8001fb6:	4b1e      	ldr	r3, [pc, #120]	@ (8002030 <controlRoutine+0x128>)
+ 8001fb8:	edd3 7a00 	vldr	s15, [r3]
+ 8001fbc:	ee76 7aa7 	vadd.f32	s15, s13, s15
+ 8001fc0:	eeb4 7ae7 	vcmpe.f32	s14, s15
+ 8001fc4:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8001fc8:	bfcc      	ite	gt
+ 8001fca:	2301      	movgt	r3, #1
+ 8001fcc:	2300      	movle	r3, #0
+ 8001fce:	b2db      	uxtb	r3, r3
+ 8001fd0:	4619      	mov	r1, r3
+ 8001fd2:	481a      	ldr	r0, [pc, #104]	@ (800203c <controlRoutine+0x134>)
+ 8001fd4:	f7ff f996 	bl	8001304 <LED_DIO_Write>
     LED_DIO_Write(&hldr1, Illuminance_lux_Int > (min_lux + (avg_lux * 3))); // three quarter of illuminance alert
- 8001fd4:	4b13      	ldr	r3, [pc, #76]	@ (8002024 <controlRoutine+0x120>)
- 8001fd6:	681b      	ldr	r3, [r3, #0]
- 8001fd8:	ee07 3a90 	vmov	s15, r3
- 8001fdc:	eeb8 7a67 	vcvt.f32.u32	s14, s15
- 8001fe0:	4b13      	ldr	r3, [pc, #76]	@ (8002030 <controlRoutine+0x12c>)
- 8001fe2:	681a      	ldr	r2, [r3, #0]
- 8001fe4:	4613      	mov	r3, r2
- 8001fe6:	005b      	lsls	r3, r3, #1
- 8001fe8:	4413      	add	r3, r2
- 8001fea:	ee07 3a90 	vmov	s15, r3
- 8001fee:	eef8 6a67 	vcvt.f32.u32	s13, s15
- 8001ff2:	4b0e      	ldr	r3, [pc, #56]	@ (800202c <controlRoutine+0x128>)
- 8001ff4:	edd3 7a00 	vldr	s15, [r3]
- 8001ff8:	ee76 7aa7 	vadd.f32	s15, s13, s15
- 8001ffc:	eeb4 7ae7 	vcmpe.f32	s14, s15
- 8002000:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8002004:	bfcc      	ite	gt
- 8002006:	2301      	movgt	r3, #1
- 8002008:	2300      	movle	r3, #0
- 800200a:	b2db      	uxtb	r3, r3
- 800200c:	4619      	mov	r1, r3
- 800200e:	480b      	ldr	r0, [pc, #44]	@ (800203c <controlRoutine+0x138>)
- 8002010:	f7ff f978 	bl	8001304 <LED_DIO_Write>
+ 8001fd8:	4b13      	ldr	r3, [pc, #76]	@ (8002028 <controlRoutine+0x120>)
+ 8001fda:	681b      	ldr	r3, [r3, #0]
+ 8001fdc:	ee07 3a90 	vmov	s15, r3
+ 8001fe0:	eeb8 7a67 	vcvt.f32.u32	s14, s15
+ 8001fe4:	4b13      	ldr	r3, [pc, #76]	@ (8002034 <controlRoutine+0x12c>)
+ 8001fe6:	681a      	ldr	r2, [r3, #0]
+ 8001fe8:	4613      	mov	r3, r2
+ 8001fea:	005b      	lsls	r3, r3, #1
+ 8001fec:	4413      	add	r3, r2
+ 8001fee:	ee07 3a90 	vmov	s15, r3
+ 8001ff2:	eef8 6a67 	vcvt.f32.u32	s13, s15
+ 8001ff6:	4b0e      	ldr	r3, [pc, #56]	@ (8002030 <controlRoutine+0x128>)
+ 8001ff8:	edd3 7a00 	vldr	s15, [r3]
+ 8001ffc:	ee76 7aa7 	vadd.f32	s15, s13, s15
+ 8002000:	eeb4 7ae7 	vcmpe.f32	s14, s15
+ 8002004:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8002008:	bfcc      	ite	gt
+ 800200a:	2301      	movgt	r3, #1
+ 800200c:	2300      	movle	r3, #0
+ 800200e:	b2db      	uxtb	r3, r3
+ 8002010:	4619      	mov	r1, r3
+ 8002012:	480b      	ldr	r0, [pc, #44]	@ (8002040 <controlRoutine+0x138>)
+ 8002014:	f7ff f976 	bl	8001304 <LED_DIO_Write>
 }
- 8002014:	bf00      	nop
- 8002016:	bd80      	pop	{r7, pc}
- 8002018:	20000000 	.word	0x20000000
- 800201c:	2000022c 	.word	0x2000022c
- 8002020:	447a0000 	.word	0x447a0000
- 8002024:	20000224 	.word	0x20000224
- 8002028:	2000024c 	.word	0x2000024c
- 800202c:	20000250 	.word	0x20000250
- 8002030:	20000228 	.word	0x20000228
- 8002034:	20000080 	.word	0x20000080
- 8002038:	2000008c 	.word	0x2000008c
- 800203c:	20000098 	.word	0x20000098
+ 8002018:	bf00      	nop
+ 800201a:	bd80      	pop	{r7, pc}
+ 800201c:	20000000 	.word	0x20000000
+ 8002020:	2000022c 	.word	0x2000022c
+ 8002024:	447a0000 	.word	0x447a0000
+ 8002028:	20000224 	.word	0x20000224
+ 800202c:	2000024c 	.word	0x2000024c
+ 8002030:	20000250 	.word	0x20000250
+ 8002034:	20000228 	.word	0x20000228
+ 8002038:	20000080 	.word	0x20000080
+ 800203c:	2000008c 	.word	0x2000008c
+ 8002040:	20000098 	.word	0x20000098
 
-08002040 <HAL_TIM_PeriodElapsedCallback>:
+08002044 <HAL_TIM_PeriodElapsedCallback>:
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
- 8002040:	b580      	push	{r7, lr}
- 8002042:	b082      	sub	sp, #8
- 8002044:	af00      	add	r7, sp, #0
- 8002046:	6078      	str	r0, [r7, #4]
+ 8002044:	b580      	push	{r7, lr}
+ 8002046:	b082      	sub	sp, #8
+ 8002048:	af00      	add	r7, sp, #0
+ 800204a:	6078      	str	r0, [r7, #4]
     if (htim == &htim7)
- 8002048:	687b      	ldr	r3, [r7, #4]
- 800204a:	4a07      	ldr	r2, [pc, #28]	@ (8002068 <HAL_TIM_PeriodElapsedCallback+0x28>)
- 800204c:	4293      	cmp	r3, r2
- 800204e:	d106      	bne.n	800205e <HAL_TIM_PeriodElapsedCallback+0x1e>
+ 800204c:	687b      	ldr	r3, [r7, #4]
+ 800204e:	4a07      	ldr	r2, [pc, #28]	@ (800206c <HAL_TIM_PeriodElapsedCallback+0x28>)
+ 8002050:	4293      	cmp	r3, r2
+ 8002052:	d106      	bne.n	8002062 <HAL_TIM_PeriodElapsedCallback+0x1e>
     {
       static unsigned int cnt = 0;
       cnt++;
- 8002050:	4b06      	ldr	r3, [pc, #24]	@ (800206c <HAL_TIM_PeriodElapsedCallback+0x2c>)
- 8002052:	681b      	ldr	r3, [r3, #0]
- 8002054:	3301      	adds	r3, #1
- 8002056:	4a05      	ldr	r2, [pc, #20]	@ (800206c <HAL_TIM_PeriodElapsedCallback+0x2c>)
- 8002058:	6013      	str	r3, [r2, #0]
+ 8002054:	4b06      	ldr	r3, [pc, #24]	@ (8002070 <HAL_TIM_PeriodElapsedCallback+0x2c>)
+ 8002056:	681b      	ldr	r3, [r3, #0]
+ 8002058:	3301      	adds	r3, #1
+ 800205a:	4a05      	ldr	r2, [pc, #20]	@ (8002070 <HAL_TIM_PeriodElapsedCallback+0x2c>)
+ 800205c:	6013      	str	r3, [r2, #0]
       controlRoutine();
- 800205a:	f7ff ff53 	bl	8001f04 <controlRoutine>
+ 800205e:	f7ff ff53 	bl	8001f08 <controlRoutine>
     }
 }
- 800205e:	bf00      	nop
- 8002060:	3708      	adds	r7, #8
- 8002062:	46bd      	mov	sp, r7
- 8002064:	bd80      	pop	{r7, pc}
- 8002066:	bf00      	nop
- 8002068:	200002b0 	.word	0x200002b0
- 800206c:	2000025c 	.word	0x2000025c
+ 8002062:	bf00      	nop
+ 8002064:	3708      	adds	r7, #8
+ 8002066:	46bd      	mov	sp, r7
+ 8002068:	bd80      	pop	{r7, pc}
+ 800206a:	bf00      	nop
+ 800206c:	200002b0 	.word	0x200002b0
+ 8002070:	2000025c 	.word	0x2000025c
 
-08002070 <processPotentiometer>:
+08002074 <processPotentiometer>:
 void processPotentiometer(void)
 {
- 8002070:	b580      	push	{r7, lr}
- 8002072:	af00      	add	r7, sp, #0
+ 8002074:	b580      	push	{r7, lr}
+ 8002076:	af00      	add	r7, sp, #0
     HAL_ADC_Start(&hadc1);
- 8002074:	481d      	ldr	r0, [pc, #116]	@ (80020ec <processPotentiometer+0x7c>)
- 8002076:	f000 fdeb 	bl	8002c50 <HAL_ADC_Start>
+ 8002078:	481d      	ldr	r0, [pc, #116]	@ (80020f0 <processPotentiometer+0x7c>)
+ 800207a:	f000 fde9 	bl	8002c50 <HAL_ADC_Start>
     if (HAL_ADC_PollForConversion(&hadc1, ADC1_TIMEOUT) == HAL_OK)
- 800207a:	2101      	movs	r1, #1
- 800207c:	481b      	ldr	r0, [pc, #108]	@ (80020ec <processPotentiometer+0x7c>)
- 800207e:	f000 feb5 	bl	8002dec <HAL_ADC_PollForConversion>
- 8002082:	4603      	mov	r3, r0
- 8002084:	2b00      	cmp	r3, #0
- 8002086:	d12e      	bne.n	80020e6 <processPotentiometer+0x76>
+ 800207e:	2101      	movs	r1, #1
+ 8002080:	481b      	ldr	r0, [pc, #108]	@ (80020f0 <processPotentiometer+0x7c>)
+ 8002082:	f000 feb3 	bl	8002dec <HAL_ADC_PollForConversion>
+ 8002086:	4603      	mov	r3, r0
+ 8002088:	2b00      	cmp	r3, #0
+ 800208a:	d12e      	bne.n	80020ea <processPotentiometer+0x76>
     {
         // Read potentiometer value and map it to lux range
         pot1_vol = ADC_REG2DUTY(HAL_ADC_GetValue(&hadc1));
- 8002088:	4818      	ldr	r0, [pc, #96]	@ (80020ec <processPotentiometer+0x7c>)
- 800208a:	f001 f84a 	bl	8003122 <HAL_ADC_GetValue>
- 800208e:	ee07 0a90 	vmov	s15, r0
- 8002092:	eeb8 7a67 	vcvt.f32.u32	s14, s15
- 8002096:	eddf 6a16 	vldr	s13, [pc, #88]	@ 80020f0 <processPotentiometer+0x80>
- 800209a:	eec7 7a26 	vdiv.f32	s15, s14, s13
- 800209e:	ed9f 7a15 	vldr	s14, [pc, #84]	@ 80020f4 <processPotentiometer+0x84>
- 80020a2:	ee67 7a87 	vmul.f32	s15, s15, s14
- 80020a6:	ed9f 7a14 	vldr	s14, [pc, #80]	@ 80020f8 <processPotentiometer+0x88>
- 80020aa:	ee77 7a87 	vadd.f32	s15, s15, s14
- 80020ae:	4b13      	ldr	r3, [pc, #76]	@ (80020fc <processPotentiometer+0x8c>)
- 80020b0:	edc3 7a00 	vstr	s15, [r3]
+ 800208c:	4818      	ldr	r0, [pc, #96]	@ (80020f0 <processPotentiometer+0x7c>)
+ 800208e:	f001 f848 	bl	8003122 <HAL_ADC_GetValue>
+ 8002092:	ee07 0a90 	vmov	s15, r0
+ 8002096:	eeb8 7a67 	vcvt.f32.u32	s14, s15
+ 800209a:	eddf 6a16 	vldr	s13, [pc, #88]	@ 80020f4 <processPotentiometer+0x80>
+ 800209e:	eec7 7a26 	vdiv.f32	s15, s14, s13
+ 80020a2:	ed9f 7a15 	vldr	s14, [pc, #84]	@ 80020f8 <processPotentiometer+0x84>
+ 80020a6:	ee67 7a87 	vmul.f32	s15, s15, s14
+ 80020aa:	ed9f 7a14 	vldr	s14, [pc, #80]	@ 80020fc <processPotentiometer+0x88>
+ 80020ae:	ee77 7a87 	vadd.f32	s15, s15, s14
+ 80020b2:	4b13      	ldr	r3, [pc, #76]	@ (8002100 <processPotentiometer+0x8c>)
+ 80020b4:	edc3 7a00 	vstr	s15, [r3]
         pot_out = min_lux + (pot1_vol / 100.0f) * (max_lux - min_lux);
- 80020b4:	4b11      	ldr	r3, [pc, #68]	@ (80020fc <processPotentiometer+0x8c>)
- 80020b6:	edd3 7a00 	vldr	s15, [r3]
- 80020ba:	eddf 6a0e 	vldr	s13, [pc, #56]	@ 80020f4 <processPotentiometer+0x84>
- 80020be:	ee87 7aa6 	vdiv.f32	s14, s15, s13
- 80020c2:	4b0f      	ldr	r3, [pc, #60]	@ (8002100 <processPotentiometer+0x90>)
- 80020c4:	edd3 6a00 	vldr	s13, [r3]
- 80020c8:	4b0e      	ldr	r3, [pc, #56]	@ (8002104 <processPotentiometer+0x94>)
- 80020ca:	edd3 7a00 	vldr	s15, [r3]
- 80020ce:	ee76 7ae7 	vsub.f32	s15, s13, s15
- 80020d2:	ee27 7a27 	vmul.f32	s14, s14, s15
- 80020d6:	4b0b      	ldr	r3, [pc, #44]	@ (8002104 <processPotentiometer+0x94>)
- 80020d8:	edd3 7a00 	vldr	s15, [r3]
- 80020dc:	ee77 7a27 	vadd.f32	s15, s14, s15
- 80020e0:	4b09      	ldr	r3, [pc, #36]	@ (8002108 <processPotentiometer+0x98>)
- 80020e2:	edc3 7a00 	vstr	s15, [r3]
+ 80020b8:	4b11      	ldr	r3, [pc, #68]	@ (8002100 <processPotentiometer+0x8c>)
+ 80020ba:	edd3 7a00 	vldr	s15, [r3]
+ 80020be:	eddf 6a0e 	vldr	s13, [pc, #56]	@ 80020f8 <processPotentiometer+0x84>
+ 80020c2:	ee87 7aa6 	vdiv.f32	s14, s15, s13
+ 80020c6:	4b0f      	ldr	r3, [pc, #60]	@ (8002104 <processPotentiometer+0x90>)
+ 80020c8:	edd3 6a00 	vldr	s13, [r3]
+ 80020cc:	4b0e      	ldr	r3, [pc, #56]	@ (8002108 <processPotentiometer+0x94>)
+ 80020ce:	edd3 7a00 	vldr	s15, [r3]
+ 80020d2:	ee76 7ae7 	vsub.f32	s15, s13, s15
+ 80020d6:	ee27 7a27 	vmul.f32	s14, s14, s15
+ 80020da:	4b0b      	ldr	r3, [pc, #44]	@ (8002108 <processPotentiometer+0x94>)
+ 80020dc:	edd3 7a00 	vldr	s15, [r3]
+ 80020e0:	ee77 7a27 	vadd.f32	s15, s14, s15
+ 80020e4:	4b09      	ldr	r3, [pc, #36]	@ (800210c <processPotentiometer+0x98>)
+ 80020e6:	edc3 7a00 	vstr	s15, [r3]
     }
 }
- 80020e6:	bf00      	nop
- 80020e8:	bd80      	pop	{r7, pc}
  80020ea:	bf00      	nop
- 80020ec:	20000120 	.word	0x20000120
- 80020f0:	457ff000 	.word	0x457ff000
- 80020f4:	42c80000 	.word	0x42c80000
- 80020f8:	00000000 	.word	0x00000000
- 80020fc:	20000234 	.word	0x20000234
- 8002100:	2000024c 	.word	0x2000024c
- 8002104:	20000250 	.word	0x20000250
- 8002108:	20000238 	.word	0x20000238
- 800210c:	00000000 	.word	0x00000000
+ 80020ec:	bd80      	pop	{r7, pc}
+ 80020ee:	bf00      	nop
+ 80020f0:	20000120 	.word	0x20000120
+ 80020f4:	457ff000 	.word	0x457ff000
+ 80020f8:	42c80000 	.word	0x42c80000
+ 80020fc:	00000000 	.word	0x00000000
+ 8002100:	20000234 	.word	0x20000234
+ 8002104:	2000024c 	.word	0x2000024c
+ 8002108:	20000250 	.word	0x20000250
+ 800210c:	20000238 	.word	0x20000238
 
 08002110 <IntegralRoutine>:
 void IntegralRoutine(void)
@@ -4200,7 +4204,7 @@ void IntegralRoutine(void)
  80021ec:	f3af 8000 	nop.w
  80021f0:	47ae147b 	.word	0x47ae147b
  80021f4:	3f847ae1 	.word	0x3f847ae1
- 80021f8:	20000258 	.word	0x20000258
+ 80021f8:	20000254 	.word	0x20000254
  80021fc:	20000238 	.word	0x20000238
  8002200:	2000023c 	.word	0x2000023c
  8002204:	2000022c 	.word	0x2000022c
@@ -4338,7 +4342,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     processPotentiometer();
- 80022da:	f7ff fec9 	bl	8002070 <processPotentiometer>
+ 80022da:	f7ff fecb 	bl	8002074 <processPotentiometer>
     ButtonControl();    // Check if the user wants to switch input mode
  80022de:	f7ff fda5 	bl	8001e2c <ButtonControl>
     IntegralRoutine();
@@ -16677,7 +16681,7 @@ void HAL_TIM_IRQHandler(TIM_HandleTypeDef *htim)
 #else
       HAL_TIM_PeriodElapsedCallback(htim);
  800682a:	6878      	ldr	r0, [r7, #4]
- 800682c:	f7fb fc08 	bl	8002040 <HAL_TIM_PeriodElapsedCallback>
+ 800682c:	f7fb fc0a 	bl	8002044 <HAL_TIM_PeriodElapsedCallback>
 #endif /* USE_HAL_TIM_REGISTER_CALLBACKS */
     }
   }
