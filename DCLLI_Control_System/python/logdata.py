@@ -4,7 +4,7 @@ import time
 import re
 
 # Set the serial port and baud rate
-serial_port = 'COM24'  # Replace 'COM1' with the appropriate serial port on your system
+serial_port = 'COM5'  # Replace 'COM1' with the appropriate serial port on your system
 baud_rate = 115200
 
 # Create a serial object

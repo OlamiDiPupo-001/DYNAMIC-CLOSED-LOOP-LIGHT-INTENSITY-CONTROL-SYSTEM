@@ -190,8 +190,8 @@ void IntegralRoutine(void)
 
     integral += error;
 
-    if (integral > 1000.0f) integral = 1000.0f;
-    if (integral < -1000.0f) integral = -1000.0f;
+//    if (integral > 1000.0f) integral = 1000.0f;
+//    if (integral < -1000.0f) integral = -1000.0f;
 
     // Clamp the duty cycle to stay between 0% and 100%
       if (duty_cycle < 0) duty_cycle = 0;
