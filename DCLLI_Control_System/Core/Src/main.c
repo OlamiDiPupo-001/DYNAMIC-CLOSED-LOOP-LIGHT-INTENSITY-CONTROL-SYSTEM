@@ -176,30 +176,19 @@ void processPotentiometer(void)
 }
 void IntegralRoutine(void)
 {
-    // Determine the target based on the current mode
-    if (currentMode == MODE_POTENTIOMETER) {
-        aim = pot_out;
-    }
-
-    // Calculate error
-    error = aim - Illuminance_lux;
-
-    // Accumulate the integral term, with an upper bound to prevent wind-up
+  // Inside controlRoutine(), use 'currentMode' to determine the source of 'aim'
+  if (currentMode == MODE_POTENTIOMETER) {
+      aim = pot_out;
+  } else if (currentMode == MODE_TERMINAL) {
+      // aim remains unchanged in MODE_TERMINAL
+  }
+    error = aim - Illuminance_lux;  // Digital calculate
+    // error = pot_out - Illuminance_lux;      // Analogue calculate
     integral += error;
-    if (integral > 1000.0f) integral = 1000.0f; // Prevent integral wind-up
-    if (integral < -1000.0f) integral = -1000.0f;
-
-    // Calculate duty cycle from the integral term
     duty_cycle = Ki * integral;
-
-    // Clamp the duty cycle to valid PWM range (0-100%)
-    if (duty_cycle > 100.0f) duty_cycle = 100.0f;
-    if (duty_cycle < 0.0f) duty_cycle = 0.0f;
-
-    // Output the duty cycle to the LED via PWM
+    lux_out = min_lux + (duty_cycle * 0.01 * (max_lux - min_lux));  // led out lux
     LED_PWM_WriteDuty(&hld1, duty_cycle);
 }
-
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
   if(huart == &huart3)
@@ -219,6 +208,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
