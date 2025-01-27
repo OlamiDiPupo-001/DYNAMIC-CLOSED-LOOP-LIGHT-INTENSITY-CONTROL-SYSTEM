@@ -89,6 +89,13 @@ LED_DIO_State_TypeDef LED_DIO_Read(const LED_DIO_Handle_TypeDef* hled)
   */
 void LED_PWM_Init(LED_PWM_Handle_TypeDef* hled)
 {
+  // Ensure the initial duty cycle is within the valid range [0, 100]
+      if (hled->Output.Duty < 0.0f) {
+          hled->Output.Duty = 0.0f;  // Clamp to minimum
+      } else if (hled->Output.Duty > 100.0f) {
+          hled->Output.Duty = 100.0f;  // Clamp to maximum
+      }
+
   hled->Output.Duty = (hled->ActiveState == LED_ON_HIGH) ? (hled->Output.Duty) : (100.0f - hled->Output.Duty);
   PWM_Init(&(hled->Output));
 }
@@ -101,6 +108,13 @@ void LED_PWM_Init(LED_PWM_Handle_TypeDef* hled)
   */
 void LED_PWM_WriteDuty(LED_PWM_Handle_TypeDef* hled, float duty)
 {
+  // Clamp the duty cycle to stay between 0% and 100%
+      if (duty > 100.0f) {
+          duty = 100.0f;  // Max limit
+      } else if (duty < 0.0f) {
+          duty = 0.0f;    // Min limit
+      }
+
   hled->Output.Duty = (hled->ActiveState == LED_ON_HIGH) ? (duty) : (100.0f - duty);
   PWM_WriteDuty(&(hled->Output), hled->Output.Duty);
 }

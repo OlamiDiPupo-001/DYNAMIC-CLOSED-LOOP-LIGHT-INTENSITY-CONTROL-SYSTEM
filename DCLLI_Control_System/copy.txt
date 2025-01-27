@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -186,17 +186,7 @@ void IntegralRoutine(void)
     // error = pot_out - Illuminance_lux;      // Analogue calculate
     integral += error;
     duty_cycle = Ki * integral;
-
-    // Clamp the duty cycle to stay between 0% and 100%
-      if (duty_cycle < 0) duty_cycle = 0;
-      if (duty_cycle > 100) duty_cycle = 100;
-
     lux_out = min_lux + (duty_cycle * 0.01 * (max_lux - min_lux));  // led out lux
-
-    // Clamp lux_out to stay within the min_lux and max_lux range
-      if (lux_out < min_lux) lux_out = min_lux;
-      if (lux_out > max_lux) lux_out = max_lux;
-
     LED_PWM_WriteDuty(&hld1, duty_cycle);
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
