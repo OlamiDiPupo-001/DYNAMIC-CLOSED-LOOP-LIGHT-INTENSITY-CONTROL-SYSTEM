@@ -187,6 +187,11 @@ void IntegralRoutine(void)
     integral += error;
     duty_cycle = Ki * integral;
     lux_out = min_lux + (duty_cycle * 0.01 * (max_lux - min_lux));  // led out lux
+
+    // Clamp lux_out to stay within the min_lux and max_lux range
+      if (lux_out < min_lux) lux_out = min_lux;
+      if (lux_out > max_lux) lux_out = max_lux;
+
     LED_PWM_WriteDuty(&hld1, duty_cycle);
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
