@@ -150,6 +150,7 @@ void controlRoutine(void)
     Illuminance_lux = BH1750_ReadIlluminance_lux(&hbh1750);
     Illuminance_lux_Int = Illuminance_lux * 1000.0f;
 
+
     avg_lux = ((max_lux - min_lux) / 4) * 1000.0f;
     LED_DIO_Write(&hldg1, Illuminance_lux_Int > (min_lux + avg_lux));   // quarter of illuminance alert
     LED_DIO_Write(&hldb1, Illuminance_lux_Int > (min_lux + (avg_lux * 2))); // half of illuminance alert
@@ -264,12 +265,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
-    processPotentiometer();
+    processPotentiometer();  //read potentiometer
     ButtonControl();    // Check if the user wants to switch input mode
-    IntegralRoutine();
+    IntegralRoutine(); // control logic
     RangeCheck();   // Perform initialization only once
     ModeSwitch(); // Call the appropriate display function based on the current mode
-    displayOnLCD();
+    displayOnLCD();// update display
     HAL_Delay(1000);
     /* USER CODE END WHILE */
 
